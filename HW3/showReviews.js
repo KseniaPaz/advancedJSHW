@@ -4,7 +4,6 @@ const listProducts = document.querySelector(".reviews");
         let product = localStorage.key(i);
         let reviewSet = JSON.parse(localStorage.getItem(product));
 
-        //добавление списка продуктов
         const divProduct = document.createElement("div");
         listProducts.insertAdjacentElement("beforeend", divProduct);
         divProduct.insertAdjacentHTML(
@@ -12,12 +11,10 @@ const listProducts = document.querySelector(".reviews");
           `<h2>${product} <button onclick="openReview(this)">показать отзывы</button> </h2>`
         );
 
-        //добавление блока для отзывов
         const divReviews = document.createElement("div");
         divReviews.hidden = true;
         divProduct.insertAdjacentElement("beforeend", divReviews);
 
-        //заполнение отзывов
         reviewSet.forEach((element) => {
           const newReview = document.createElement("div");
           divReviews.insertAdjacentElement("beforeend", newReview);
@@ -26,7 +23,7 @@ const listProducts = document.querySelector(".reviews");
           reviewText.textContent = element;
           newReview.insertAdjacentElement("beforeend", reviewText);
 
-          //кнопка удаления
+
           newReview.insertAdjacentElement(
             "beforeend",
             deleteReviewBtn(reviewText, reviewSet, product)
@@ -34,7 +31,6 @@ const listProducts = document.querySelector(".reviews");
         });
       }
 
-      //создание кнопки удаления отзыва
       function deleteReviewBtn(textReview, setReview, product) {
         const delBtn = document.createElement("button");
         delBtn.textContent = "Удалить";
@@ -57,7 +53,6 @@ const listProducts = document.querySelector(".reviews");
         return delBtn;
       }
 
-      //функция открытия-скрытия блока отзывов
       function openReview(elem) {
         let hiddenElement = elem.parentElement.parentElement.lastChild;
         if (hiddenElement.hidden) {
